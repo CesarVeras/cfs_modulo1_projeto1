@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { CadastroMedicoComponent } from './cadastro-medico/cadastro-medico.component';
 
 const routes: Routes = [
-	{
-		path: '',
-		pathMatch: 'full',
-		redirectTo: 'login'
-	},
-	{
-		path: 'login',
-		component: LoginComponent
-	},
-	{
-		path: 'cadastrar-medico',
-		component: LoginComponent // TODO Alterar para componente de cadastro de médico
-	}
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'cadastrar-medico',
+    component: CadastroMedicoComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

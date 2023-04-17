@@ -15,6 +15,7 @@
 
 form {
 	display: grid;
+	gap: .5rem;
 }
 
 .field {
@@ -41,7 +42,6 @@ input {
 .error-msg p {
 	margin: 0 0 .5rem 0;
 }
-
 
 .buttons {
 	display: flex;

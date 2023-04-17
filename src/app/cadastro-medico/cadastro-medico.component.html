@@ -1,0 +1,42 @@
+<div class="login-container">
+	<h2>Cadastrar Médico</h2>
+	<div class="form-container">
+		<form [formGroup]="form" (submit)="cadastrar()">
+			<div class="field">
+				<label for="email">Email</label>
+				<input type="text" id="email" placeholder="email@exemplo.com" name="email" formControlName="email"
+					[ngClass]="{'is-invalid': fc.email.touched && fc.email.invalid}">
+				<div class="error-msg" *ngIf="fc.email.touched && fc.email.invalid">
+					<p *ngIf="fc.email.errors?.required">Campo obrigatório.</p>
+					<p *ngIf="fc.email.errors?.email">Formato de email inválido.</p>
+				</div>
+			</div>
+			<div class="field">
+				<label for="password">Senha</label>
+				<input type="password" id="password" name="password" placeholder="**********" formControlName="password"
+					[ngClass]="{'is-invalid': fc.password.touched && fc.password.invalid}">
+				<div class="error-msg" *ngIf="fc.password.touched && fc.password.invalid">
+					<p *ngIf="fc.password.errors?.required">Campo obrigatório.</p>
+					<p *ngIf="fc.password.errors?.minlength">A senha precisa ter pelo menos 10 caracteres.</p>
+				</div>
+			</div>
+			<div class="field">
+				<label for="confirmPassword">Confirmar Senha</label>
+				<input type="password" id="confirmPassword" name="password" placeholder="**********"
+					formControlName="confirmPassword"
+					[ngClass]="{'is-invalid': fc.confirmPassword.touched && fc.confirmPassword.invalid}">
+				<div class="error-msg" *ngIf="fc.confirmPassword.touched && fc.confirmPassword.invalid">
+					<p *ngIf="fc.confirmPassword.errors?.required">Campo obrigatório.</p>
+					<p *ngIf="fc.confirmPassword.errors?.minlength">A confirmação de senha precisa ter pelo menos 10 caracteres.</p>
+				</div>
+				<div class="error-msg" *ngIf="fc.password.touched && fc.confirmPassword.touched && form.invalid">
+					<p *ngIf="form.errors?.confirmarSenha">A senha e a confirmação não são iguais.</p>
+				</div>
+			</div>
+			<div class="buttons">
+				<button>Salvar</button>
+				<button class="alternative-button" [routerLink]="['/login']">Voltar</button>
+			</div>
+		</form>
+	</div>
+</div>
