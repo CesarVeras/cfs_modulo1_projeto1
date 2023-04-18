@@ -5,6 +5,7 @@ import { CadastroMedicoComponent } from './cadastro-medico/cadastro-medico.compo
 import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-medicamento.component';
 import { LogadoGuard } from './shared/guards/logado.guard';
 import { DeslogadoGuard } from './shared/guards/deslogado.guard';
+import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,12 @@ const routes: Routes = [
 		path: 'cadastrar-medicamento',
 		component: CadastroMedicamentoComponent,
 		canActivate: [LogadoGuard]
-	}
+	},
+	{
+		path: 'cadastrar-paciente',
+		component: CadastroPacienteComponent,
+		canActivate: [LogadoGuard]
+	},
 ];
 
 @NgModule({

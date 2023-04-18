@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CadastroMedicoComponent } from './cadastro-medico/cadastro-medico.component';
 import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-medicamento.component';
+import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-me
     AppComponent,
 		LoginComponent,
 		CadastroMedicoComponent,
-  CadastroMedicamentoComponent
+		CadastroMedicamentoComponent,
+		CadastroPacienteComponent,
   ],
   imports: [
     BrowserModule,

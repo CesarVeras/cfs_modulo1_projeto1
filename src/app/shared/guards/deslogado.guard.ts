@@ -14,7 +14,7 @@ export class DeslogadoGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 		if (this.ls.getLogado()) {
-			this.router.navigate(['/cadastrar-medicamento']);
+			this.router.navigate(['/cadastrar-paciente']);
 			return false;
 		} else {
 			return true;
