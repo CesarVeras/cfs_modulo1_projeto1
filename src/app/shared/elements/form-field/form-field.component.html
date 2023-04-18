@@ -1,0 +1,24 @@
+<div class="field" [formGroup]="form">
+	<label for="nome">{{ label }}</label>
+
+	<input type="text" [id]="id" placeholder="nome do medicamento" [name]="id" [formControlName]="id"
+		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}" *ngIf="!isSelect">
+
+	<select name="" id="" *ngIf="isSelect">
+		<option disabled selected value="-1">Selecione</option>
+		<option *ngFor="let opcao of opcoes; let i = index" [value]="i">{{opcao}}</option>
+	</select>
+
+	<div class="error-msg" *ngIf="formControlObject.touched && formControlObject.invalid">
+		<p *ngFor="let key of Object.keys(formControlObject.errors)"><span *ngIf="formControlObject.errors[key]!">{{
+				errorsMessage[key] }}</span></p>
+	</div>
+</div>
+
+<!-- 
+<app-form-field label="Senha" id="senha"
+	[isSelect]='true'
+	[opcoes]='opcoes'
+	[errorsMessage]="{required: 'Campo obrigatório.', minlength: 'A senha precisa ter pelo menos 10 caracteres.'}"
+	[formControlObject]="fc.senha" [form]="form"
+></app-form-field> -->
