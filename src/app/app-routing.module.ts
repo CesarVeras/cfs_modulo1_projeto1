@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { CadastroMedicoComponent } from './cadastro-medico/cadastro-medico.component';
 import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-medicamento.component';
 import { LogadoGuard } from './shared/guards/logado.guard';
+import { DeslogadoGuard } from './shared/guards/deslogado.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+		canActivate: [DeslogadoGuard]
   },
   {
     path: 'cadastrar-medico',
