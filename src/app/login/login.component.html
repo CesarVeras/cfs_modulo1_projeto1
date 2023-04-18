@@ -12,11 +12,11 @@
 				</div>
 			</div>
 			<div class="field">
-				<label for="password">Senha</label>
-				<input type="password" id="password" name="password" placeholder="**********" formControlName="password"
-					[ngClass]="{'is-invalid': fc.password.touched && fc.password.invalid}">
-				<div class="error-msg" *ngIf="fc.password.touched && fc.password.invalid">
-					<p *ngIf="fc.password.errors?.required">Campo obrigatório</p>
+				<label for="senha">Senha</label>
+				<input type="password" id="senha" name="password" placeholder="**********" formControlName="senha"
+					[ngClass]="{'is-invalid': fc.senha.touched && fc.senha.invalid}">
+				<div class="error-msg" *ngIf="fc.senha.touched && fc.senha.invalid">
+					<p *ngIf="fc.senha.errors?.required">Campo obrigatório</p>
 				</div>
 			</div>
 			<div class="buttons">

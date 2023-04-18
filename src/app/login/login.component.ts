@@ -12,10 +12,10 @@ export class LoginComponent {
   form: any;
   medicos: Array<any> = [];
 
-  constructor(fb: FormBuilder, ls: LocalStorageService) {
+  constructor(fb: FormBuilder, private ls: LocalStorageService) {
     this.form = fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      senha: ['', [Validators.required]]
     });
     this.medicos = ls.getMedicos();
   }
@@ -26,12 +26,12 @@ export class LoginComponent {
 
   autenticar() {
     if (this.form.invalid) return;
-    let found: boolean = this.medicos.some(
+		let elem = this.medicos.find(
       (medico) =>
         this.form.value.email === medico.email &&
-        this.form.value.password === medico.password
+        this.form.value.senha === medico.senha
     );
-    // TODO liberar acesso
-    console.log(found);
+		this.ls.setLogado(elem || null);
+    console.log(elem);
   }
 }

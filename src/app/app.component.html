@@ -1,4 +1,9 @@
 <div class="app-container">
+	<ul class="links">
+		<li><button [routerLink]="['/login']" routerLinkActive="active">Login</button></li>
+		<li><button [routerLink]="['/cadastrar-medico']" routerLinkActive="active">Cadastrar Médico</button></li>
+		<li *ngIf="logado"><button (click)="deslogar()">Deslogar</button></li>
+	</ul>
 	<h1>Projeto Avaliativo 1</h1>
 	<div class="content-container">
 		<router-outlet></router-outlet>

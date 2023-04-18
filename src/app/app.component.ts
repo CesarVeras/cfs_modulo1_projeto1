@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalStorageService } from './shared/services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'modulo1_projeto1';
+
+	logado;
+
+	constructor(private router: Router, private ls: LocalStorageService) {
+		if (this.ls.getLogado()) {
+			this.logado = true;
+		} else {
+			this.logado = false;
+		}
+	}
+
+	deslogar() {
+		this.ls.setLogado(null);
+		this.router.navigate(['/login']);
+	}
 }
