@@ -1,0 +1,55 @@
+.form-container {
+	max-width: 1000px;
+}
+
+.cadastro-medicamento-container form {
+	grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.buttons {
+	justify-content: flex-start;
+	align-items: flex-end;
+	gap: 1rem;
+}
+
+.disabled {
+	color: grey;
+	cursor: not-allowed;
+}
+
+@media screen and (min-width: 640px) {
+	.cadastro-medicamento-container form {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	
+	.medio {
+		grid-column: span 1;
+	}
+	
+	.grande {
+		grid-column: span 2;
+	}
+
+	.full {
+		grid-column: span 3;
+	}
+}
+
+@media screen and (min-width: 850px) {
+	.cadastro-medicamento-container form {
+		grid-template-columns: repeat(6, 1fr);
+  }
+	
+	.medio {
+		grid-column: span 2;
+	}
+	
+	.grande {
+		grid-column: span 4;
+	}
+	
+	.full {
+		grid-column: span 6;
+	}
+}

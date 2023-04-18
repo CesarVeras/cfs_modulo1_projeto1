@@ -1,1 +1,75 @@
-<p>cadastro-medicamento works!</p>
+<div class="form-container">
+	<h2>Cadastrar Medicamento</h2>
+	<div class="cadastro-medicamento-container">
+		<form [formGroup]="form" (submit)="cadastrar()">
+			<div class="field grande">
+				<label for="nome">Nome</label>
+				<input type="text" id="nome" placeholder="nome do medicamento" name="nome" formControlName="nome"
+					[ngClass]="{'is-invalid': fc.nome.touched && fc.nome.invalid}">
+				<div class="error-msg" *ngIf="fc.nome.touched && fc.nome.invalid">
+					<p *ngIf="fc.nome.errors?.required">Campo obrigatório.</p>
+					<p *ngIf="fc.nome.errors?.minlength">O nome deve ter pelo menos 8 caracteres.</p>
+					<p *ngIf="fc.nome.errors?.maxlength">O nome deve ter no máximo 80 caracteres.</p>
+				</div>
+			</div>
+			<div class="field">
+				<label for="data">Data</label>
+				<input type="date" id="data" placeholder="data do medicamento" name="data" formControlName="data"
+					[ngClass]="{'is-invalid': fc.data.touched && fc.data.invalid}">
+				<div class="error-msg" *ngIf="fc.data.touched && fc.data.invalid">
+					<p *ngIf="fc.data.errors?.required">Campo obrigatório.</p>
+				</div>
+			</div>
+			<div class="field">
+				<label for="hora">Hora</label>
+				<input type="time" id="hora" placeholder="hora do medicamento" name="hora" formControlName="hora"
+					[ngClass]="{'is-invalid': fc.hora.touched && fc.hora.invalid}">
+				<div class="error-msg" *ngIf="fc.hora.touched && fc.hora.invalid">
+					<p *ngIf="fc.hora.errors?.required">Campo obrigatório.</p>
+				</div>
+			</div>
+			<div class="field medio">
+				<label for="tipo">Tipo</label>
+				<select name="tipo" id="tipo" formControlName="tipo"
+					[ngClass]="{'is-invalid': fc.tipo.touched && fc.tipo.invalid}">
+					<option disabled selected value="-1">Selecione</option>
+					<option *ngFor="let tipo of tipos; let i = index" [value]="i">{{ tipo }}</option>
+				</select>
+				<div class="error-msg" *ngIf="fc.tipo.touched && fc.tipo.invalid">
+					<p *ngIf="fc.tipo.errors?.required">Campo obrigatório.</p>
+				</div>
+			</div>
+			<div class="field medio">
+				<label for="quantidade">Quantidade</label>
+				<input type="number" id="quantidade" placeholder="quantidade do medicamento" name="quantidade" step="0.01"
+					formControlName="quantidade" [ngClass]="{'is-invalid': fc.quantidade.touched && fc.quantidade.invalid}">
+				<div class="error-msg" *ngIf="fc.quantidade.touched && fc.quantidade.invalid">
+					<p *ngIf="fc.quantidade.errors?.required">Campo obrigatório.</p>
+				</div>
+			</div>
+			<div class="field medio">
+				<label for="unidade">Unidade</label>
+				<select name="unidade" id="unidade" formControlName="unidade"
+					[ngClass]="{'is-invalid': fc.unidade.touched && fc.unidade.invalid}">
+					<option disabled selected value="-1">Selecione</option>
+					<option *ngFor="let unidade of unidades; let i = index" [value]="i">{{ unidade }}</option>
+				</select>
+				<div class="error-msg" *ngIf="fc.unidade.touched && fc.tipo.invalid">
+					<p *ngIf="fc.tipo.errors?.required">Campo obrigatório.</p>
+				</div>
+			</div>
+			<div class="field full">
+				<label for="observacoes">Observações</label>
+				<textarea name="observacoes" id="observacoes" cols="30" rows="10" formControlName="observacoes"></textarea>
+			</div>
+			<div class="buttons full">
+				<button>Salvar</button>
+				<button class="disabled" disabled>Deletar</button>
+				<label class="disabled">
+					<input type="checkbox" disabled checked>
+					Editar
+				</label>
+			</div>
+		</form>
+	</div>
+</div>
