@@ -35,5 +35,6 @@ export class CadastroMedicoComponent {
     this.medicos.push(obj);
     this.ls.setMedicos(this.medicos);
 		this.router.navigate(['/login']);
+		this.form.reset();
   }
 }

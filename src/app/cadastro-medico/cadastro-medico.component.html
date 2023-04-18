@@ -29,9 +29,9 @@
 					<p *ngIf="fc.confirmarSenha.errors?.required">Campo obrigatório.</p>
 					<p *ngIf="fc.confirmarSenha.errors?.minlength">A confirmação de senha precisa ter pelo menos 10 caracteres.</p>
 				</div>
-				<div class="error-msg" *ngIf="fc.senha.touched && fc.confirmarSenha.touched && form.invalid">
-					<p *ngIf="form.errors?.confirmarSenha">A senha e a confirmação não são iguais.</p>
-				</div>
+			</div>
+			<div class="error-msg" style="position: static" *ngIf="fc.senha.touched && fc.confirmarSenha.touched && form.invalid">
+				<p *ngIf="form.errors?.confirmarSenha">A senha e a confirmação não são iguais.</p>
 			</div>
 			<div class="buttons">
 				<button>Salvar</button>
