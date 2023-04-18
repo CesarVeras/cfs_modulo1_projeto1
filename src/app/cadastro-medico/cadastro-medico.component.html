@@ -12,24 +12,24 @@
 				</div>
 			</div>
 			<div class="field">
-				<label for="password">Senha</label>
-				<input type="password" id="password" name="password" placeholder="**********" formControlName="password"
-					[ngClass]="{'is-invalid': fc.password.touched && fc.password.invalid}">
-				<div class="error-msg" *ngIf="fc.password.touched && fc.password.invalid">
-					<p *ngIf="fc.password.errors?.required">Campo obrigatório.</p>
-					<p *ngIf="fc.password.errors?.minlength">A senha precisa ter pelo menos 10 caracteres.</p>
+				<label for="senha">Senha</label>
+				<input type="password" id="senha" name="password" placeholder="**********" formControlName="senha"
+					[ngClass]="{'is-invalid': fc.senha.touched && fc.senha.invalid}">
+				<div class="error-msg" *ngIf="fc.senha.touched && fc.senha.invalid">
+					<p *ngIf="fc.senha.errors?.required">Campo obrigatório.</p>
+					<p *ngIf="fc.senha.errors?.minlength">A senha precisa ter pelo menos 10 caracteres.</p>
 				</div>
 			</div>
 			<div class="field">
-				<label for="confirmPassword">Confirmar Senha</label>
-				<input type="password" id="confirmPassword" name="password" placeholder="**********"
-					formControlName="confirmPassword"
-					[ngClass]="{'is-invalid': fc.confirmPassword.touched && fc.confirmPassword.invalid}">
-				<div class="error-msg" *ngIf="fc.confirmPassword.touched && fc.confirmPassword.invalid">
-					<p *ngIf="fc.confirmPassword.errors?.required">Campo obrigatório.</p>
-					<p *ngIf="fc.confirmPassword.errors?.minlength">A confirmação de senha precisa ter pelo menos 10 caracteres.</p>
+				<label for="confirmarSenha">Confirmar Senha</label>
+				<input type="password" id="confirmarSenha" name="password" placeholder="**********"
+					formControlName="confirmarSenha"
+					[ngClass]="{'is-invalid': fc.confirmarSenha.touched && fc.confirmarSenha.invalid}">
+				<div class="error-msg" *ngIf="fc.confirmarSenha.touched && fc.confirmarSenha.invalid">
+					<p *ngIf="fc.confirmarSenha.errors?.required">Campo obrigatório.</p>
+					<p *ngIf="fc.confirmarSenha.errors?.minlength">A confirmação de senha precisa ter pelo menos 10 caracteres.</p>
 				</div>
-				<div class="error-msg" *ngIf="fc.password.touched && fc.confirmPassword.touched && form.invalid">
+				<div class="error-msg" *ngIf="fc.senha.touched && fc.confirmarSenha.touched && form.invalid">
 					<p *ngIf="form.errors?.confirmarSenha">A senha e a confirmação não são iguais.</p>
 				</div>
 			</div>

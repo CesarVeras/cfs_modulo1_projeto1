@@ -17,8 +17,8 @@ export class CadastroMedicoComponent {
     this.form = fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(11)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(11)]],
+        senha: ['', [Validators.required, Validators.minLength(11)]],
+        confirmarSenha: ['', [Validators.required, Validators.minLength(11)]],
       },
       { validators: [ConfirmarSenha.confirmarSenhaValidations] }
     );
@@ -31,7 +31,8 @@ export class CadastroMedicoComponent {
 
   cadastrar() {
     if (this.form.invalid) return;
-    this.medicos.push(this.form.value);
+		const obj = {'email': this.form.value.email, 'senha': this.form.value.senha};
+    this.medicos.push(obj);
     this.ls.setMedicos(this.medicos);
 		this.router.navigate(['/login']);
   }
