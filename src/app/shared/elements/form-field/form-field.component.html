@@ -1,17 +1,43 @@
 <div class="field" [formGroup]="form">
-	<label for="nome">{{ label }}</label>
+	<label [for]="id">{{ label }}</label>
 
-	<input type="text" [id]="id" placeholder="nome do medicamento" [name]="id" [formControlName]="id"
-		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}" *ngIf="!isSelect">
+	<input 
+		[type]="type" [id]="id" [placeholder]="label" [name]="id" 
+		[formControlName]="id"
+		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}" 
+		*ngIf="(type !== 'select') && (type !== 'textarea')"
+	>
 
-	<select name="" id="" *ngIf="isSelect">
-		<option disabled selected value="-1">Selecione</option>
-		<option *ngFor="let opcao of opcoes; let i = index" [value]="i">{{opcao}}</option>
+	<select 
+		[name]="id" [id]="id" 
+		[formControlName]="id"
+		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}" 
+		*ngIf="type === 'select'" 
+	>
+		<option value="" selected disabled>Selecione</option>
+		<option 
+			[value]="i" id="opcao-{{id}}-{{i}}" 
+			*ngFor="let opcao of opcoes; let i = index" 
+		>
+			{{opcao}}		
+		</option>
 	</select>
 
-	<div class="error-msg" *ngIf="formControlObject.touched && formControlObject.invalid">
-		<p *ngFor="let key of Object.keys(formControlObject.errors)"><span *ngIf="formControlObject.errors[key]!">{{
-				errorsMessage[key] }}</span></p>
+	<textarea 
+		[name]="id" [id]="id" cols="30" rows="10" 
+		[formControlName]="id" 
+		*ngIf="type === 'textarea'"
+	></textarea>
+
+	<div 
+		class="error-msg" 
+		*ngIf="formControlObject.touched && formControlObject.invalid"
+	>
+		<p *ngFor="let key of Object.keys(formControlObject.errors)">
+			<span *ngIf="formControlObject.errors[key]!">
+				{{ errorsMessage[key] }}
+			</span>
+		</p>
 	</div>
 </div>
 

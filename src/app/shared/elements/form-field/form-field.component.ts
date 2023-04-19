@@ -7,15 +7,16 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./form-field.component.css'],
 })
 export class FormFieldComponent {
+	Object = Object;
+
   @Input() label: string = '';
   @Input() id: string = '';
+	@Input() type?: string = 'text';
+	@Input() form: any;
+	@Input() formControlObject: any;
+	@Input() opcoes?: Array<string>;
 	@Input() errorsMessage: {[index: string]: string} = {
 		required: 'O campo é obrigatório',
 		minLength: `O ${this.label} precisa te no minimo X caracteres`
 	};
-	@Input() form: any;
-	@Input() formControlObject: any;
-	Object = Object;
-	@Input() isSelect?: boolean = false;
-	@Input() opcoes?: Array<string>;
 }
