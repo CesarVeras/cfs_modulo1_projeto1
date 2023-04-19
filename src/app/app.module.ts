@@ -18,7 +18,7 @@ import { FormFieldComponent } from './shared/elements/form-field/form-field.comp
 		CadastroMedicoComponent,
 		CadastroMedicamentoComponent,
 		CadastroPacienteComponent,
-  FormFieldComponent,
+		FormFieldComponent,
   ],
   imports: [
     BrowserModule,
