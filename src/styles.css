@@ -59,13 +59,17 @@ h6 {
   isolation: isolate;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
+	:root {
+		--clr-primary: hsl(176, 89%, 18%);
+	}
+
   *,
   *::before,
   *::after {
     color-scheme: dark light;
   }
-} */
+}
 /* 
 @media (prefers-color-scheme: light) {
   *,
@@ -75,11 +79,11 @@ h6 {
   }
 } */
 
-/* @media (prefers-color-scheme: no-preference) {
+@media (prefers-color-scheme: no-preference) {
 	*, *::before, *::after {
 		color-scheme: dark light;
 	}
-} */
+}
 
 /* estilos de formulário */
 
@@ -108,7 +112,7 @@ h6 {
 
 form {
   display: grid;
-  gap: 1rem;
+  gap: 1.75rem;
 }
 
 .field {
@@ -127,10 +131,11 @@ select {
 .is-invalid {
   border-color: #d42020;
 	background-color: hsl(0, 100%, 92%);
+	color: #000;
 }
 
 .error-msg {
-  color: #d42020;
+  color: #ac0101;
   font-size: 0.75rem;
   position: absolute;
   top: 100%;
@@ -138,12 +143,15 @@ select {
 }
 
 .error-msg p {
+	font-weight: bold;
+	font-size: 1.125rem;
   margin: 0 0 0.5rem 0;
 }
 
 .buttons {
   display: flex;
-  justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
 }
 
 .buttons button:not(.alternative-button) {
@@ -154,4 +162,15 @@ select {
   border: 0;
   background-color: transparent;
   text-decoration: underline;
+}
+
+.btn-deletar {
+	background-color: hsl(0, 100%, 40%);
+	border: 1px solid #aaa;
+}
+
+.disabled {
+	filter: grayscale(70%);
+	color: grey;
+	cursor: not-allowed;
 }
