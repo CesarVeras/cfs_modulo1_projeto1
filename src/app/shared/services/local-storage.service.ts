@@ -14,13 +14,21 @@ export class LocalStorageService {
     window.localStorage.setItem('medicos', JSON.stringify(medicos));
   }
 
-	getMedicamentos() {
-		return JSON.parse(window.localStorage.getItem('medicamentos') || '[]');
-	}
+  getMedicamentos() {
+    return JSON.parse(window.localStorage.getItem('medicamentos') || '[]');
+  }
 
-	setMedicamentos(medicamentos: Array<any>) {
-		window.localStorage.setItem('medicamentos', JSON.stringify(medicamentos));
-	}
+  setMedicamentos(medicamentos: Array<any>) {
+    window.localStorage.setItem('medicamentos', JSON.stringify(medicamentos));
+  }
+
+  getPacientes() {
+    return JSON.parse(window.localStorage.getItem('pacientes') || '[]');
+  }
+
+  setPacientes(pacientes: Array<any>) {
+    window.localStorage.setItem('pacientes', JSON.stringify(pacientes));
+  }
 
   getLogado() {
     return JSON.parse(window.localStorage.getItem('usuarioLogado') || 'null');
