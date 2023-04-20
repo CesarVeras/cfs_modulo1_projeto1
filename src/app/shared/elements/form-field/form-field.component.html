@@ -3,14 +3,14 @@
 
 	<input 
 		[type]="type" [id]="id" [placeholder]="label" [name]="id" 
-		[formControlName]="id"
+		[formControl]="formControlObject"
 		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}" 
 		*ngIf="(type !== 'select') && (type !== 'textarea')"
 	>
 
 	<select 
 		[name]="id" [id]="id" 
-		[formControlName]="id"
+		[formControl]="formControlObject"
 		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}" 
 		*ngIf="type === 'select'" 
 	>
@@ -25,16 +25,16 @@
 
 	<textarea 
 		[name]="id" [id]="id" cols="30" rows="10" 
-		[formControlName]="id" 
+		[formControl]="formControlObject"
 		*ngIf="type === 'textarea'"
 	></textarea>
-
+	
 	<div 
 		class="error-msg" 
 		*ngIf="formControlObject.touched && formControlObject.invalid"
 	>
 		<p *ngFor="let key of Object.keys(formControlObject.errors)">
-			<span *ngIf="formControlObject.errors[key]!">
+			<span *ngIf="formControlObject.errors[key]">
 				{{ errorsMessage[key] }}
 			</span>
 		</p>
