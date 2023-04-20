@@ -1,1 +1,38 @@
-<p>cadastro-paciente works!</p>
+<div class="form-container">
+	<h2>Cadastrar Paciente</h2>
+	<div class="cadastro-paciente-container">
+		<form [formGroup]="form" (submit)="cadastrar()">
+			<div *ngFor="let field of fields; let i = index" [ngClass]="field.classes">
+				<app-form-field 
+					[label]="field.label"
+					[id]="field.id"
+					[type]="field.type ? field.type : 'text'"
+					[opcoes]="field.opcoes ?? []"
+					[errorsMessage]="field.errorsMessage"
+					[formControlObject]="field.fc" [form]="form"
+				/>
+			</div>
+			<fieldset class="grid full" formGroupName="endereco">
+				<legend>Endereço</legend>
+				<div *ngFor="let field of enderecoFields; let i = index" [ngClass]="field.classes">
+					<app-form-field 
+						[label]="field.label"
+						[id]="field.id"
+						[type]="field.type ? field.type : 'text'"
+						[opcoes]="field.opcoes ?? []"
+						[errorsMessage]="field.errorsMessage"
+						[formControlObject]="field.fc" [form]="fc.endereco"
+					/>
+				</div>
+			</fieldset>
+			<div class="buttons full">
+				<button>Salvar</button>
+				<button type="button" class="disabled btn-deletar" disabled>Deletar</button>
+				<label class="disabled">
+					<input type="checkbox" disabled checked>
+					Editar
+				</label>
+			</div>
+		</form>
+	</div>
+</div>
