@@ -1,0 +1,37 @@
+<div class="container-home">
+	<h2>Estatísticas do Sistema</h2>
+	<div class="grid-info">
+		<div class="info-card">
+			<img [src]="'../../assets/img/pacientes.svg'" alt="Ícone de pacientes">
+			<div class="text">
+				<span class="quantidade">{{ pacientes.length }}</span>
+				Pacientes
+			</div>
+		</div>
+		<div class="info-card">
+			<img [src]="'../../assets/img/medicamento.svg'" alt="Ícone de medicamentos">
+			<div class="text">
+				<span class="quantidade">{{ medicamentos.length }}</span>
+				Medicamentos
+			</div>
+		</div>
+	</div>
+	<div class="busca-pacientes">
+		<h2>Informações rápidas de pacientes</h2>
+		<form>
+			<input type="text" placeholder="Digite o nome do paciente">
+			<button>Buscar</button>
+		</form>
+		<div class="busca-resultados">
+			<div class="card-list">
+				<div class="card" *ngFor="let paciente of pacientes">
+					<img [src]="'../../assets/img/paciente.svg'" alt="" class="foto">
+					<h3 class="nome">{{ paciente.nome }}</h3>
+					<p class="idade">{{ getIdadePaciente(paciente) }} anos</p>
+					<p class="plano">{{ paciente.convenio || 'sem convênio' }}</p>
+					<button class="alternative-button">Ver mais</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

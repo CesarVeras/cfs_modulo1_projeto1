@@ -40,6 +40,6 @@ export class LoginComponent {
     );
     this.ls.setLogado(elem || null);
     this.lo.emitirEvento();
-		this.router.navigate(['/cadastrar-medicamento']);
+		this.router.navigate(['/home']);
   }
 }

@@ -9,6 +9,7 @@ import { CadastroMedicoComponent } from './cadastro-medico/cadastro-medico.compo
 import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-medicamento.component';
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 import { FormFieldComponent } from './shared/elements/form-field/form-field.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FormFieldComponent } from './shared/elements/form-field/form-field.comp
 		CadastroMedicamentoComponent,
 		CadastroPacienteComponent,
 		FormFieldComponent,
+		HomeComponent,
   ],
   imports: [
     BrowserModule,

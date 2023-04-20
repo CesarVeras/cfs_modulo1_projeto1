@@ -26,7 +26,7 @@ export class LogadoGuard implements CanActivate {
 		if (this.ls.getLogado()) {
 			return true;
 		} else {
-			this.router.navigate(['/login']);
+			this.router.navigate(['/home']);
 			return false;
 		}
   }

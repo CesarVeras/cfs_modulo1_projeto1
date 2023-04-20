@@ -6,6 +6,7 @@ import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-me
 import { LogadoGuard } from './shared/guards/logado.guard';
 import { DeslogadoGuard } from './shared/guards/deslogado.guard';
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
     path: 'cadastrar-medico',
     component: CadastroMedicoComponent,
   },
+	{
+		path: 'home',
+		component: HomeComponent,
+		canActivate: [LogadoGuard]
+	},
 	{
 		path: 'cadastrar-medicamento',
 		component: CadastroMedicamentoComponent,

@@ -1,0 +1,82 @@
+.container-home {
+	padding: 1rem;
+}
+
+.grid-info {
+  display: grid;
+  gap: 1rem;
+  place-content: center;
+}
+
+@media (min-width: 550px) {
+	.grid-info {
+		grid-template-columns: repeat(2, auto);
+	}
+}
+
+.info-card {
+  padding: 2rem;
+  background-color: var(--clr-primary);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+}
+
+.info-card img {
+	width: 70px;
+}
+
+.info-card .text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	width: 13ch;
+}
+
+.info-card .quantidade {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.busca-pacientes {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.busca-pacientes form {
+  gap: 1rem;
+}
+
+@media (min-width: 340px) {
+	.busca-pacientes form {
+		grid-template-columns: 1fr auto;
+	}
+}
+
+.card-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 1rem;
+}
+
+.card-list .card {
+	background-color: var(--clr-primary);
+	padding: 1rem;
+	border-radius: 5px;
+	text-align: center;
+	display: grid;
+	grid-template-rows: auto 56px auto auto;
+	gap: .5rem;
+	align-items: center;
+}
+
+.card .foto {
+	width: 50%;
+	margin: auto;
+}
