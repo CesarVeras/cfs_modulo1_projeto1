@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LocalStorageService } from '../shared/services/local-storage.service';
+import { Paciente } from '../shared/models/paciente';
+import { Medicamento } from '../shared/models/medicamento';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +9,8 @@ import { LocalStorageService } from '../shared/services/local-storage.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-	pacientes: Array<any>;
-	medicamentos: Array<any>;
+	pacientes: Array<Paciente>;
+	medicamentos: Array<Medicamento>;
 
 	constructor(private ls: LocalStorageService) {
 		this.pacientes = ls.getPacientes();

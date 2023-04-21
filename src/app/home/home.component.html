@@ -29,7 +29,7 @@
 					<h3 class="nome">{{ paciente.nome }}</h3>
 					<p class="idade">{{ getIdadePaciente(paciente) }} anos</p>
 					<p class="plano">{{ paciente.convenio || 'sem convênio' }}</p>
-					<button class="alternative-button">Ver mais</button>
+					<button class="alternative-button" [routerLink]="'/cadastrar-paciente'" [state]="{paciente, 'editar': true}">Ver mais</button>
 				</div>
 			</div>
 		</div>
