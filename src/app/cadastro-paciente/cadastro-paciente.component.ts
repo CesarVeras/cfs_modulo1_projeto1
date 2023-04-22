@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { LocalStorageService } from '../shared/services/local-storage.service';
 import { Router } from '@angular/router';
+
+import { estados, estadosCivis, generos } from '../shared/utils';
+import { Paciente } from '../shared/models/paciente';
+import { PacienteService } from '../shared/services/paciente.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -10,46 +13,8 @@ import { Router } from '@angular/router';
 })
 export class CadastroPacienteComponent implements OnInit {
   form: any;
-  generos: Array<String> = ['Masculino', 'Feminino', 'Outro'];
-  estadosCivis: Array<string> = [
-    'Solteiro',
-    'Casado',
-    'União estável',
-    'Divorciado',
-    'Viúvo',
-  ];
-
-  dfs: any = {
-    rr: 'Roraima',
-    ap: 'Amapá',
-    am: 'Amazonas',
-    pa: 'Pará',
-    ac: 'Acre',
-    ro: 'Rondônia',
-    to: 'Tocantins',
-    ma: 'Maranhão',
-    pi: 'Piauí',
-    ce: 'Ceará',
-    rn: 'Rio Grande do Norte',
-    pb: 'Paraíba',
-    pe: 'Pernambuco',
-    al: 'Alagoas',
-    se: 'Sergipe',
-    ba: 'Bahia',
-    mt: 'Mato Grosso',
-    df: 'Distrito Federal',
-    go: 'Goiás',
-    ms: 'Mato Grosso do Sul',
-    mg: 'Minas Gerais',
-    es: 'Espírito Santo',
-    rj: 'Rio de Janeiro',
-    sp: 'São Paulo',
-    pr: 'Paraná',
-    sc: 'Santa Catarina',
-    rs: 'Rio Grande do sul',
-  };
-
-  pacientes: Array<Object>;
+  pacienteSelecionado: Paciente;
+  editar: boolean;
 
   fields: any;
   enderecoFields: any;
@@ -58,69 +23,108 @@ export class CadastroPacienteComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private ls: LocalStorageService,
+    private ps: PacienteService,
     private router: Router
   ) {
-    this.pacientes = ls.getPacientes();
+    this.pacienteSelecionado = window.history.state.paciente || {};
+    this.editar = window.history.state.editar || false;
 
     this.form = fb.group({
       nome: [
-        '',
+        this.pacienteSelecionado?.nome || '',
         [
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(80),
         ],
       ],
-      genero: ['', [Validators.required]],
-      dataNascimento: ['', [Validators.required]],
+      genero: [this.pacienteSelecionado?.genero || '', [Validators.required]],
+      dataNascimento: [
+				this.pacienteSelecionado?.dataNascimento || '', 
+				[Validators.required]],
       cpf: [
-        '',
+        this.pacienteSelecionado?.cpf || '',
         [
           Validators.required,
           Validators.minLength(11),
           Validators.maxLength(11),
         ],
       ],
-      rg: ['', [Validators.required, Validators.maxLength(20)]],
-      estadoCivil: ['', [Validators.required]],
-      telefone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      rg: [
+        this.pacienteSelecionado?.rg || '',
+        [Validators.required, Validators.maxLength(20)],
+      ],
+      estadoCivil: [
+        this.pacienteSelecionado?.estadoCivil || '',
+        [Validators.required],
+      ],
+      telefone: [
+        this.pacienteSelecionado?.telefone || '',
+        [Validators.required],
+      ],
+      email: [
+        this.pacienteSelecionado?.email || '',
+        [Validators.required, Validators.email],
+      ],
       naturalidade: [
-        '',
+        this.pacienteSelecionado?.naturalidade || '',
         [
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(100),
         ],
       ],
-      contatoEmergencia: ['', [Validators.required]],
-      alergias: ['', []],
-      cuidadosEspecificos: ['', []],
-      convenio: ['', []],
-      numeroConvenio: ['', []],
-      validadeConvenio: ['', []],
+      contatoEmergencia: [
+        this.pacienteSelecionado?.contatoEmergencia || '',
+        [Validators.required],
+      ],
+      alergias: [this.pacienteSelecionado?.alergias || '', []],
+      cuidadosEspecificos: [
+        this.pacienteSelecionado?.cuidadosEspecificos || '',
+        [],
+      ],
+      convenio: [this.pacienteSelecionado?.convenio || '', []],
+      numeroConvenio: [this.pacienteSelecionado?.numeroConvenio || '', []],
+      validadeConvenio: [this.pacienteSelecionado?.validadeConvenio || '', []],
       endereco: fb.group({
-        cep: ['', [Validators.required]],
-        cidade: ['', [Validators.required]],
-        estado: ['', [Validators.required]],
-        logradouro: ['', [Validators.required]],
-        numero: ['', [Validators.required]],
-        complemento: ['', [Validators.required]],
-        bairro: ['', [Validators.required]],
-        referencia: ['', []],
+        cep: [
+          this.pacienteSelecionado?.endereco?.cep || '',
+          [Validators.required],
+        ],
+        cidade: [
+          this.pacienteSelecionado?.endereco?.cidade || '',
+          [Validators.required],
+        ],
+        estado: [
+          this.pacienteSelecionado?.endereco?.estado || '',
+          [Validators.required],
+        ],
+        logradouro: [
+          this.pacienteSelecionado?.endereco?.logradouro || '',
+          [Validators.required],
+        ],
+        numero: [
+          this.pacienteSelecionado?.endereco?.numero || '',
+          [Validators.required],
+        ],
+        complemento: [
+          this.pacienteSelecionado?.endereco?.complemento || '',
+          [Validators.required],
+        ],
+        bairro: [
+          this.pacienteSelecionado?.endereco?.bairro || '',
+          [Validators.required],
+        ],
+        referencia: [this.pacienteSelecionado?.endereco?.referencia || '', []],
       }),
     });
-
-    console.log(this.form.get('endereco'));
-
     this.fields = [
       {
         label: 'Nome Completo',
         id: 'nome',
         classes: { grande: true },
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
           minlength: 'O nome precisa ter pelo menos 4 caracteres.',
           maxlength: 'O nome deve ter no máximo 80 caracteres.',
         },
@@ -130,9 +134,10 @@ export class CadastroPacienteComponent implements OnInit {
         label: 'Gênero',
         id: 'genero',
         type: 'select',
-        opcoes: this.generos,
+        opcoes: generos,
+        value: this.pacienteSelecionado?.genero,
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
         },
         fc: this.fc.genero,
       },
@@ -140,9 +145,10 @@ export class CadastroPacienteComponent implements OnInit {
         label: 'Estado Civil',
         id: 'estadoCivil',
         type: 'select',
-        opcoes: this.estadosCivis,
+        opcoes: estadosCivis,
+        value: this.pacienteSelecionado?.estadoCivil,
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
         },
         fc: this.fc.estadoCivil,
       },
@@ -152,7 +158,7 @@ export class CadastroPacienteComponent implements OnInit {
         type: 'email',
         classes: { grande: true },
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
           email: 'O formato do email é inválido.',
         },
         fc: this.fc.email,
@@ -161,7 +167,7 @@ export class CadastroPacienteComponent implements OnInit {
         label: 'CPF',
         id: 'cpf',
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
           minlength: 'O CPF precisa ter 11 caracteres.',
           maxlength: 'O CPF precisa ter 11 caracteres.',
         },
@@ -171,7 +177,7 @@ export class CadastroPacienteComponent implements OnInit {
         label: 'RG',
         id: 'rg',
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
           minlength: 'O RG precisa ter no máximo 20.',
         },
         fc: this.fc.rg,
@@ -181,7 +187,7 @@ export class CadastroPacienteComponent implements OnInit {
         id: 'dataNascimento',
         type: 'date',
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
         },
         fc: this.fc.dataNascimento,
       },
@@ -189,7 +195,7 @@ export class CadastroPacienteComponent implements OnInit {
         label: 'Telefone',
         id: 'telefone',
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
         },
         fc: this.fc.telefone,
       },
@@ -197,8 +203,9 @@ export class CadastroPacienteComponent implements OnInit {
         label: 'Naturalidade',
         id: 'naturalidade',
         classes: { grande: true },
+        value: this.pacienteSelecionado.naturalidade,
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
           minlength: 'A naturalidade precisar ter mais que 5 caracteres.',
           maxlength: 'A naturalidade precisar ter no máximo 100 caracteres.',
         },
@@ -214,7 +221,7 @@ export class CadastroPacienteComponent implements OnInit {
         label: 'Contato de Emergência',
         id: 'contatoEmergencia',
         errorsMessage: {
-          required: 'O campo é obrigatório.',
+          required: 'Campo obrigatório.',
         },
         fc: this.fc.contatoEmergencia,
       },
@@ -308,13 +315,12 @@ export class CadastroPacienteComponent implements OnInit {
         fetch(`https://viacep.com.br/ws/${value}/json/`)
           .then((data) => data.json())
           .then((data) => {
-            console.log(data);
             this.fc.endereco.get('bairro').setValue(data.bairro);
             this.fc.endereco.get('cidade').setValue(data.localidade);
             this.fc.endereco.get('logradouro').setValue(data.logradouro);
             this.fc.endereco
               .get('estado')
-              .setValue(this.dfs[data.uf.toLowerCase()]);
+              .setValue(estados[data.uf.toLowerCase()]);
           });
     });
   }
@@ -326,9 +332,19 @@ export class CadastroPacienteComponent implements OnInit {
   cadastrar() {
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
-    console.log(this.form.value);
-    this.pacientes.push(this.form.value);
-    this.ls.setPacientes(this.pacientes);
+    if (this.editar) {
+      this.ps.editarPaciente(this.form.value);
+    } else {
+      this.ps.adicionarPaciente(this.form.value);
+    }
     this.form.reset();
+    this.router.navigate(['/home']);
+  }
+
+  deletarPaciente() {
+    if (!this.editar) return;
+    this.ps.removerPaciente(this.pacienteSelecionado);
+    this.form.reset();
+    this.router.navigate(['/home']);
   }
 }

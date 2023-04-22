@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { LocalStorageService } from '../shared/services/local-storage.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmarSenha } from '../shared/validators/confirmar-senha.validators';
 import { Router } from '@angular/router';
+import { MedicoService } from '../shared/services/medico.service';
 
 @Component({
   selector: 'app-cadastro-medico',
@@ -11,9 +11,13 @@ import { Router } from '@angular/router';
 })
 export class CadastroMedicoComponent {
   form: any;
-  medicos: Array<any> = [];
+  fields: Array<any>;
 
-  constructor(fb: FormBuilder, private ls: LocalStorageService, private router: Router) {
+  constructor(
+    fb: FormBuilder,
+    private ms: MedicoService,
+    private router: Router
+  ) {
     this.form = fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -22,7 +26,38 @@ export class CadastroMedicoComponent {
       },
       { validators: [ConfirmarSenha.confirmarSenhaValidations] }
     );
-    this.medicos = ls.getMedicos();
+    this.fields = [
+      {
+        id: 'email',
+        label: 'Email',
+				type: 'email',
+        errorsMessage: {
+          required: 'Campo obrigatório.',
+          email: 'Formato de email inválido.',
+        },
+        fc: this.fc.email,
+      },
+			{
+				id: 'senha',
+				label: 'Senha',
+				type: 'password',
+				errorsMessage: {
+					required: 'Campo obrigatório.',
+					minlength: 'A senha precisa ter pelo menos 10 caracteres.',
+				},
+				fc: this.fc.senha
+			},
+			{
+				id: 'confirmarSenha',
+				label: 'Confirmar Senha',
+				type: 'password',
+				errorsMessage: {
+					required: 'Campo obrigatório.',
+					minlength: 'A confirmação de senha precisa ter pelo menos 10 caracteres.',
+				},
+				fc: this.fc.confirmarSenha
+			},
+    ];
   }
 
   get fc(): any {
@@ -31,10 +66,9 @@ export class CadastroMedicoComponent {
 
   cadastrar() {
     if (this.form.invalid) return;
-		const obj = {'email': this.form.value.email, 'senha': this.form.value.senha};
-    this.medicos.push(obj);
-    this.ls.setMedicos(this.medicos);
-		this.router.navigate(['/login']);
-		this.form.reset();
+    const obj = { email: this.form.value.email, senha: this.form.value.senha };
+    this.ms.adicionarMedico(obj);
+    this.form.reset();
+    this.router.navigate(['/login']);
   }
 }

@@ -4,17 +4,7 @@
 
 .cadastro-medicamento-container form {
 	grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-.buttons {
-	justify-content: flex-start;
-	gap: 1rem;
-}
-
-.disabled {
-	color: grey;
-	cursor: not-allowed;
+	gap: 1.75rem;
 }
 
 @media screen and (min-width: 640px) {
