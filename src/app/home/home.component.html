@@ -19,19 +19,39 @@
 	<div class="busca-pacientes">
 		<h2>Informações rápidas de pacientes</h2>
 		<form>
-			<input type="text" placeholder="Digite o nome do paciente">
+			<input type="text" placeholder="Digite o nome do paciente" name="busca" [(ngModel)]="busca"
+				(input)="buscarPaciente()">
 			<button>Buscar</button>
 		</form>
 		<div class="busca-resultados">
 			<div class="card-list">
-				<div class="card" *ngFor="let paciente of pacientes; let i = index">
-					<img [src]="'../../assets/img/paciente.svg'" alt="" class="foto">
-					<h3 class="nome">{{ paciente.nome }}</h3>
-					<p class="idade">{{ getIdadePaciente(paciente) }} anos</p>
-					<p class="plano">{{ paciente.convenio || 'sem convênio' }}</p>
-					<button class="alternative-button" [routerLink]="'/cadastrar-paciente'" [state]="{paciente, 'editar': true, 'i': i}">Ver mais</button>
-				</div>
+				<div *ngIf="buscando; then buscaDiv; else semBuscaDiv"></div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<ng-template #buscaDiv>
+	<div class="card" [ngClass]="{'menor': resultadoBusca.length === 1}" *ngFor="let paciente of resultadoBusca; let i = index">
+		<img [src]="'../../assets/img/paciente.svg'" alt="" class="foto">
+		<h3 class="nome">{{ paciente.nome }}</h3>
+		<p class="idade">{{ getIdadePaciente(paciente) }} anos</p>
+		<p class="plano">{{ paciente.convenio || 'sem convênio' }}</p>
+		<button class="alternative-button" [routerLink]="'/cadastrar-paciente'"
+			[state]="{paciente, 'editar': true, 'i': i}">Ver mais</button>
+	</div>
+	<div *ngIf="resultadoBusca.length === 0">
+		<p>Sem pacientes encontrados para a busca.</p>
+	</div>
+</ng-template>
+
+<ng-template #semBuscaDiv>
+	<div class="card" *ngFor="let paciente of pacientes; let i = index">
+		<img [src]="'../../assets/img/paciente.svg'" alt="" class="foto">
+		<h3 class="nome">{{ paciente.nome }}</h3>
+		<p class="idade">{{ getIdadePaciente(paciente) }} anos</p>
+		<p class="plano">{{ paciente.convenio || 'sem convênio' }}</p>
+		<button class="alternative-button" [routerLink]="'/cadastrar-paciente'"
+			[state]="{paciente, 'editar': true, 'i': i}">Ver mais</button>
+	</div>
+</ng-template>

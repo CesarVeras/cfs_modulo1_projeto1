@@ -81,6 +81,10 @@
   align-items: center;
 }
 
+.card.menor {
+	max-width: 190px;
+}
+
 .card .foto {
   width: 50%;
   margin: auto;
