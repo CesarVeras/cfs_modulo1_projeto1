@@ -2,6 +2,7 @@
 	<ul class="links">
 		<li><button [routerLink]="['/login']" routerLinkActive="active">Login</button></li>
 		<li><button [routerLink]="['/cadastrar-medico']" routerLinkActive="active">Cadastrar Médico</button></li>
+		<li><button [routerLink]="['/home']" routerLinkActive="active">Home</button></li>
 		<li><button [routerLink]="['/cadastrar-medicamento']" routerLinkActive="active">Cadastrar Medicamento</button></li>
 		<li><button [routerLink]="['/cadastrar-paciente']" routerLinkActive="active">Cadastrar Paciente</button></li>
 		<li *ngIf="logado"><button (click)="deslogar()">Deslogar</button></li>
