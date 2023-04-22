@@ -2,36 +2,13 @@
 	<h2>Cadastrar Médico</h2>
 	<div class="cadastro-medico-container">
 		<form [formGroup]="form" (submit)="cadastrar()">
-			<div class="field">
-				<label for="email">Email</label>
-				<input type="text" id="email" placeholder="email@exemplo.com" name="email" formControlName="email"
-					[ngClass]="{'is-invalid': fc.email.touched && fc.email.invalid}">
-				<div class="error-msg" *ngIf="fc.email.touched && fc.email.invalid">
-					<p *ngIf="fc.email.errors?.required">Campo obrigatório.</p>
-					<p *ngIf="fc.email.errors?.email">Formato de email inválido.</p>
-				</div>
-			</div>
-			<div class="field">
-				<label for="senha">Senha</label>
-				<input type="password" id="senha" name="password" placeholder="**********" formControlName="senha"
-					[ngClass]="{'is-invalid': fc.senha.touched && fc.senha.invalid}">
-				<div class="error-msg" *ngIf="fc.senha.touched && fc.senha.invalid">
-					<p *ngIf="fc.senha.errors?.required">Campo obrigatório.</p>
-					<p *ngIf="fc.senha.errors?.minlength">A senha precisa ter pelo menos 10 caracteres.</p>
-				</div>
-			</div>
-			<div class="field">
-				<label for="confirmarSenha">Confirmar Senha</label>
-				<input type="password" id="confirmarSenha" name="password" placeholder="**********"
-					formControlName="confirmarSenha"
-					[ngClass]="{'is-invalid': fc.confirmarSenha.touched && fc.confirmarSenha.invalid}">
-				<div class="error-msg" *ngIf="fc.confirmarSenha.touched && fc.confirmarSenha.invalid">
-					<p *ngIf="fc.confirmarSenha.errors?.required">Campo obrigatório.</p>
-					<p *ngIf="fc.confirmarSenha.errors?.minlength">A confirmação de senha precisa ter pelo menos 10 caracteres.</p>
-				</div>
+			<div *ngFor="let field of fields; let i = index" [ngClass]="field.classes">
+				<app-form-field [label]="field.label" [id]="field.id" [type]="field.type ? field.type : 'text'"
+					[opcoes]="field.opcoes ?? []" [errorsMessage]="field.errorsMessage" [formControlObject]="field.fc"
+					[form]="form" />
 			</div>
 			<div class="error-msg" style="position: static" *ngIf="fc.senha.touched && fc.confirmarSenha.touched && form.invalid">
-				<p *ngIf="form.errors?.confirmarSenha">A senha e a confirmação não são iguais.</p>
+				<p *ngIf="form.errors?.['confirmarSenha']">A senha e a confirmação não são iguais.</p>
 			</div>
 			<div class="buttons">
 				<button>Salvar</button>

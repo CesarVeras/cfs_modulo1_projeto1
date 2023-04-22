@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalStorageService } from './shared/services/local-storage.service';
 import { LogadoService } from './shared/services/logado.service';
 
 @Component({
@@ -13,22 +12,21 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private ls: LocalStorageService,
-    private lo: LogadoService
+    private ls: LogadoService,
   ) {
     if (this.ls.getLogado()) {
       this.logado = true;
     } else {
       this.logado = false;
     }
-    lo.eventEmitter.subscribe(() => {
+    ls.eventEmitter.subscribe(() => {
       this.logado = !this.logado;
     });
   }
 
   deslogar() {
     this.ls.setLogado(null);
-    this.lo.eventEmitter.emit();
+    this.ls.eventEmitter.emit();
     this.router.navigate(['/login']);
   }
 }
