@@ -96,7 +96,6 @@ h6 {
   min-width: 300px;
   max-width: 600px;
   margin: 0 auto;
-	border-radius: 50px 50px 0 0;
 }
 
 @media screen and (min-width: 640px) {

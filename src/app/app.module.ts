@@ -11,6 +11,7 @@ import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente
 import { FormFieldComponent } from './shared/elements/form-field/form-field.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MenuComponent } from './menu/menu.component';
 		FormFieldComponent,
 		HomeComponent,
 		MenuComponent,
+		ToolbarComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,33 @@
 /* estilo geral */
 
 .app-container {
-	width: 100%;
-	min-height: 100vh;
-	min-height: 100dvh;
-	/* display: grid; */
-	grid-template-rows: auto 1fr;
-	place-items: center;
-	justify-content: center;
-}
-
-app-menu {
-	position: fixed;
-	inset: 0 auto 0 0;
-	z-index: 999;
-	box-shadow: 2px 0 5px 2px rgba(0 0 0 / .4);
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* display: grid; */
+  grid-template-rows: auto 1fr;
+  place-items: center;
+  justify-content: center;
 }
 
 .content-container {
-	margin-left: 55px; 
-	padding-top: 2rem;
+	margin-top: 1rem;
+}
+
+@media (min-width: 400px) {
+  app-menu {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 999;
+  }
+
+  main {
+    margin-left: 55px;
+  }
+
+  .content-container {
+    box-shadow: inset 4px 4px 6px 2px rgba(0 0 0 / 0.4);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
 }

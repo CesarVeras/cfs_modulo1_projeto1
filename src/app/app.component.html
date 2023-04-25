@@ -1,6 +1,9 @@
 <div class="app-container">
 	<app-menu *ngIf="logado" />
-	<div class="content-container">
-		<router-outlet />
-	</div>
+	<main>
+		<app-toolbar *ngIf="logado" />
+		<div class="content-container">
+			<router-outlet />
+		</div>
+	</main>
 </div>
