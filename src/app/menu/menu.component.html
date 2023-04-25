@@ -1,0 +1,18 @@
+<div class="menu-wrapper" [ngClass]="{'aberto': aberto}">
+	<h1>LABMedication</h1>
+	<div class="menu-body">
+		<button class="button-control" [ngClass]="{'open': !aberto, 'close': aberto}" (click)="alternarAberto()">
+			<span *ngIf="aberto; else hamburger">&times;</span>
+		</button>
+		<nav>
+			<button [routerLink]="'/home'" class="menu-link">Inicio</button>
+			<button [routerLink]="'/cadastrar-paciente'" class="menu-link">Cadastrar Paciente</button>
+			<button [routerLink]="'/cadastrar-medicamento'" class="menu-link">Prescrever medicamento</button>
+			<button [routerLink]="'/cadastrar-medicamento'" class="menu-link">Histórico de tratamentos</button>
+		</nav>
+	</div>
+</div>
+
+<ng-template #hamburger>
+	<img [src]="'../../assets/img/menu.svg'" alt="">
+</ng-template>

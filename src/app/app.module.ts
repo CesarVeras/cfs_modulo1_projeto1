@@ -10,6 +10,7 @@ import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-me
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 import { FormFieldComponent } from './shared/elements/form-field/form-field.component';
 import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 		CadastroPacienteComponent,
 		FormFieldComponent,
 		HomeComponent,
+		MenuComponent,
   ],
   imports: [
     BrowserModule,
