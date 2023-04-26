@@ -5,12 +5,12 @@
 			<span *ngIf="aberto; else hamburger">&times;</span>
 		</button>
 		<nav>
-			<button class="menu-link" [routerLink]="'/home'" routerLinkActive="ativo">Inicio</button>
-			<button class="menu-link" [routerLink]="'/cadastrar-paciente'" routerLinkActive="ativo">Cadastrar
+			<button class="menu-link" [routerLink]="'/home'" routerLinkActive="ativo" (click)="alternarAberto()">Inicio</button>
+			<button class="menu-link" [routerLink]="'/cadastrar-paciente'" routerLinkActive="ativo" (click)="alternarAberto()">Cadastrar
 				Paciente</button>
-			<button class="menu-link" [routerLink]="'/cadastrar-medicamento'" routerLinkActive="ativo">Prescrever
+			<button class="menu-link" [routerLink]="'/cadastrar-medicamento'" routerLinkActive="ativo" (click)="alternarAberto()">Prescrever
 				medicamento</button>
-			<button class="menu-link" [routerLink]="'/cadastrar-medicamento'" routerLinkActive="ativo">Histórico de
+			<button class="menu-link" [routerLink]="'/cadastrar-medicamento'" routerLinkActive="ativo" (click)="alternarAberto()">Histórico de
 				tratamentos</button>
 		</nav>
 	</div>

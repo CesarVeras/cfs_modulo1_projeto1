@@ -1,3 +1,5 @@
+import { Paciente } from './paciente';
+
 export interface Medicamento {
   nome: string;
   data: string;
@@ -6,4 +8,5 @@ export interface Medicamento {
   quantidade: number;
   unidade: number;
   observacoes: string;
+  paciente: Paciente;
 }
