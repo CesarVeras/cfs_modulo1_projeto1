@@ -10,23 +10,10 @@ import { LogadoService } from './shared/services/logado.service';
 export class AppComponent {
   logado;
 
-  constructor(
-    private router: Router,
-    private ls: LogadoService,
-  ) {
-    if (this.ls.getLogado()) {
-      this.logado = true;
-    } else {
-      this.logado = false;
-    }
+  constructor(private router: Router, private ls: LogadoService) {
+    this.logado = this.ls.getLogado();
     ls.eventEmitter.subscribe(() => {
       this.logado = !this.logado;
     });
-  }
-
-  deslogar() {
-    this.ls.setLogado(null);
-    this.ls.eventEmitter.emit();
-    this.router.navigate(['/login']);
   }
 }

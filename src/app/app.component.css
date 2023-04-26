@@ -11,7 +11,14 @@
 }
 
 .content-container {
-	margin-top: 1rem;
+  padding-block: 2rem;
+}
+
+main {
+  display: grid;
+  grid-template-rows: 55px 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 @media (min-width: 400px) {
@@ -27,7 +34,5 @@
 
   .content-container {
     box-shadow: inset 4px 4px 6px 2px rgba(0 0 0 / 0.4);
-    min-height: 100vh;
-    min-height: 100dvh;
   }
 }

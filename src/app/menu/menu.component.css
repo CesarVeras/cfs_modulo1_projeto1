@@ -2,16 +2,16 @@
   .menu-wrapper {
     background-color: var(--clr-primary);
     position: relative;
-		max-width: 100%;
+    max-width: 100%;
   }
 
   .menu-wrapper h1 {
     padding: 0 1rem;
-    transform: scale(.75);
+    transform: scale(0.75);
     transform-origin: left;
   }
 
-	.button-control {
+  .button-control {
     position: absolute;
     inset: 0.25rem 0.25rem auto auto;
     aspect-ratio: 1;
@@ -21,12 +21,12 @@
     line-height: 0.9;
   }
 
-	.button-control.open {
+  .button-control.open {
     background-color: transparent;
     border: 0;
   }
 
-	.button-control.close {
+  .button-control.close {
     background-color: rgba(0 0 0 / 0.1);
     border: 2px solid #fff;
     border-radius: 100vw;
@@ -39,17 +39,21 @@
     scale: 0;
   }
 
-	nav {
-		display: flex;
-		flex-direction: column;
-	}
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
 
-	nav button {
-		flex-grow: 1;
+  nav button {
+    flex-grow: 1;
     color: #fff;
     background-color: transparent;
-		border: 0;
+    border: 0;
     border-bottom: 2px solid #fff;
+  }
+
+  nav button.ativo {
+    background-color: rgba(0 0 0 / 0.6);
   }
 }
 
@@ -61,7 +65,7 @@
     padding: 5rem 1rem 1rem 1rem;
     position: relative;
     max-width: 55px;
-		border-right: 1px solid #000;
+    border-right: 1px solid #000;
   }
 
   .menu-wrapper.aberto {
@@ -116,7 +120,7 @@
     border: 2px solid #fff;
   }
 
-  nav button:is(:hover, :focus-visible) {
+  nav button:is(:hover, :focus-visible, .ativo) {
     background-color: rgba(0 0 0 / 0.6);
   }
 }
