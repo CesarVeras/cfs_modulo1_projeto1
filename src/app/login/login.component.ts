@@ -33,14 +33,23 @@ export class LoginComponent {
   }
 
   autenticar() {
-    if (this.form.invalid) return;
+		if (this.form.invalid) return;
     let elem = this.medicos.find(
-      (medico) =>
-        this.form.value.email === medico.email &&
-        this.form.value.senha === medico.senha
-    );
-    this.ls.setLogado(elem || null);
-    this.ls.emitirEvento();
-		this.router.navigate(['/home']);
+			(medico) =>
+			this.form.value.email === medico.email &&
+			this.form.value.senha === medico.senha
+		);
+		if (elem) {
+			
+			this.ls.setLogado(elem || null);
+			this.ls.emitirEvento();
+			this.router.navigate(['/home']);
+		} else {
+			window.alert('Email ou senha incorretos.');
+		}
   }
+
+	exibirAviso() {
+		window.alert('Em construção');
+	}
 }

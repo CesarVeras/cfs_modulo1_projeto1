@@ -2,7 +2,7 @@
 	<app-menu *ngIf="logado" />
 	<main>
 		<app-toolbar *ngIf="logado" />
-		<div class="content-container">
+		<div class="content-container" [ngClass]="{'sombra': logado}">
 			<router-outlet />
 		</div>
 	</main>
