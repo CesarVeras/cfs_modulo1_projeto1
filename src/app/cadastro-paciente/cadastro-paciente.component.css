@@ -1,0 +1,60 @@
+.form-container {
+  max-width: 1000px;
+}
+
+.grid {
+	display: grid;
+	gap: 1.75rem;
+	padding-bottom: 1.75rem;
+}
+
+@media screen and (min-width: 790px) {
+  .cadastro-paciente-container form, .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .medio {
+    grid-column: span 1;
+  }
+
+  .grande {
+    grid-column: span 2;
+  }
+
+  .full {
+    grid-column: span 2;
+  }
+}
+
+
+@media screen and (min-width: 900px) {
+  .cadastro-paciente-container form, .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .medio {
+    grid-column: span 1;
+  }
+
+  .grande {
+    grid-column: span 2;
+  }
+
+  .full {
+    grid-column: span 3;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .cadastro-paciente-container form, .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grande {
+    grid-column: span 2;
+  }
+
+  .full {
+    grid-column: span 4;
+  }
+}

@@ -1,0 +1,29 @@
+<div class="form-container">
+	<h2>Login</h2>
+	<div class="login-container">
+		<form [formGroup]="form" (submit)="autenticar()">
+			<div class="field">
+				<label for="email">Email</label>
+				<input type="text" id="email" placeholder="email@exemplo.com" name="email" formControlName="email"
+					[ngClass]="{'is-invalid': fc.email.touched && fc.email.invalid}">
+				<div class="error-msg" *ngIf="fc.email.touched && fc.email.invalid">
+					<p *ngIf="fc.email.errors?.required">Campo obrigatório</p>
+					<p *ngIf="fc.email.errors?.email">Formato de email inválido</p>
+				</div>
+			</div>
+			<div class="field">
+				<label for="senha">Senha</label>
+				<input type="password" id="senha" name="password" placeholder="**********" formControlName="senha"
+					[ngClass]="{'is-invalid': fc.senha.touched && fc.senha.invalid}">
+				<div class="error-msg" *ngIf="fc.senha.touched && fc.senha.invalid">
+					<p *ngIf="fc.senha.errors?.required">Campo obrigatório</p>
+				</div>
+			</div>
+			<div class="buttons">
+				<button>Entrar</button>
+				<button type="button" class="alternative-button" [routerLink]="'/cadastrar-medico'">Criar nova conta</button>
+				<button type="button" class="alternative-button" (click)="exibirAviso()">Esqueci minha senha</button>
+			</div>
+		</form>
+	</div>
+</div>

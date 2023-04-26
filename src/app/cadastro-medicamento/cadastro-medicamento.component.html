@@ -1,0 +1,20 @@
+<div class="form-container">
+	<h2>Cadastrar Medicamento</h2>
+	<div class="cadastro-medicamento-container">
+		<form [formGroup]="form" (submit)="cadastrar()">
+			<div *ngFor="let field of fields; let i = index" [ngClass]="field.classes">
+				<app-form-field [label]="field.label" [id]="field.id" [type]="field.type ? field.type : 'text'"
+					[opcoes]="field.opcoes ?? []" [errorsMessage]="field.errorsMessage" [formControlObject]="field.fc"
+					[form]="form" />
+			</div>
+			<div class="buttons full">
+				<button>Salvar</button>
+				<button class="disabled btn-deletar" disabled>Deletar</button>
+				<label class="disabled">
+					<input type="checkbox" disabled checked>
+					Editar
+				</label>
+			</div>
+		</form>
+	</div>
+</div>

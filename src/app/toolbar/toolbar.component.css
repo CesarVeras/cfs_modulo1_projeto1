@@ -1,0 +1,30 @@
+.toolbar-container {
+	height: 55px;
+	background-color: var(--clr-primary);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1.5rem;
+	color: #fff;
+	font-weight: bold;
+	padding: .5rem;
+}
+
+.user-control {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+}
+
+.user-control img {
+	height: 15px;
+}
+
+@media (max-width: 550px) {
+	.toolbar-container {
+		height: auto;
+		flex-direction: column-reverse;
+		align-content: center;
+
+	}
+}

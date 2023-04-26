@@ -1,0 +1,19 @@
+<div class="form-container">
+	<h2>Cadastrar Médico</h2>
+	<div class="cadastro-medico-container">
+		<form [formGroup]="form" (submit)="cadastrar()">
+			<div *ngFor="let field of fields; let i = index" [ngClass]="field.classes">
+				<app-form-field [label]="field.label" [id]="field.id" [type]="field.type ? field.type : 'text'"
+					[opcoes]="field.opcoes ?? []" [errorsMessage]="field.errorsMessage" [formControlObject]="field.fc"
+					[form]="form" />
+			</div>
+			<div class="error-msg" style="position: static" *ngIf="fc.senha.touched && fc.confirmarSenha.touched && form.invalid">
+				<p *ngIf="form.errors?.['confirmarSenha']">A senha e a confirmação não são iguais.</p>
+			</div>
+			<div class="buttons">
+				<button>Salvar</button>
+				<button class="alternative-button" [routerLink]="['/login']">Voltar</button>
+			</div>
+		</form>
+	</div>
+</div>

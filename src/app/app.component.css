@@ -1,0 +1,47 @@
+/* estilo geral */
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* display: grid; */
+  grid-template-rows: auto 1fr;
+  place-items: center;
+  justify-content: center;
+}
+
+.content-container {
+  padding-block: 2rem;
+}
+
+main {
+  display: grid;
+  grid-template-rows: 55px 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.content-container {
+  grid-row: 2;
+}
+
+@media (min-width: 400px) {
+  app-menu {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 999;
+  }
+
+  main {
+    margin-left: 55px;
+  }
+
+  .content-container.sombra {
+    box-shadow: inset 4px 4px 6px 2px rgba(0 0 0 / 0.4);
+  }
+
+	.content-container:has(app-login, app-cadastro-medico) {
+		grid-row: 1 / -1;
+		align-self: center;
+	}
+}
