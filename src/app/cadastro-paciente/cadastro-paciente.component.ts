@@ -26,11 +26,9 @@ export class CadastroPacienteComponent {
     fb: FormBuilder,
     private ps: PacienteService,
     private router: Router,
-		private ls: LogadoService
+    private ls: LogadoService
   ) {
-
-		this.ls.tituloAlterou('Cadastro de paciente');
-
+    this.ls.tituloAlterou('Cadastro de paciente');
 
     this.pacienteSelecionado = window.history.state.paciente || {};
     this.editar = window.history.state.editar || false;
@@ -46,8 +44,9 @@ export class CadastroPacienteComponent {
       ],
       genero: [this.pacienteSelecionado?.genero || '', [Validators.required]],
       dataNascimento: [
-				this.pacienteSelecionado?.dataNascimento || '', 
-				[Validators.required]],
+        this.pacienteSelecionado?.dataNascimento || '',
+        [Validators.required],
+      ],
       cpf: [
         this.pacienteSelecionado?.cpf || '',
         [
@@ -172,6 +171,7 @@ export class CadastroPacienteComponent {
       {
         label: 'CPF',
         id: 'cpf',
+        mask: '000.000.000-00',
         errorsMessage: {
           required: 'Campo obrigatório.',
           minlength: 'O CPF precisa ter 11 caracteres.',
@@ -182,6 +182,7 @@ export class CadastroPacienteComponent {
       {
         label: 'RG',
         id: 'rg',
+				mask: '0.000.000',
         errorsMessage: {
           required: 'Campo obrigatório.',
           minlength: 'O RG precisa ter no máximo 20.',
@@ -200,6 +201,7 @@ export class CadastroPacienteComponent {
       {
         label: 'Telefone',
         id: 'telefone',
+				mask: '(00) 0000-0000||(00) 00000-0000',
         errorsMessage: {
           required: 'Campo obrigatório.',
         },
@@ -226,6 +228,7 @@ export class CadastroPacienteComponent {
       {
         label: 'Contato de Emergência',
         id: 'contatoEmergencia',
+				mask: '(00) 0000-0000||(00) 00000-0000',
         errorsMessage: {
           required: 'Campo obrigatório.',
         },
@@ -252,6 +255,7 @@ export class CadastroPacienteComponent {
       {
         label: 'CEP',
         id: 'cep',
+				mask: '00000-000',
         errorsMessage: {
           required: 'O campo é obrigatório',
         },
@@ -284,6 +288,7 @@ export class CadastroPacienteComponent {
       {
         label: 'Número',
         id: 'numero',
+				mask: '0*',
         type: 'number',
         errorsMessage: {
           required: 'O campo é obrigatório',

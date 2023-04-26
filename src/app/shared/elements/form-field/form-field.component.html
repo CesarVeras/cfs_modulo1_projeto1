@@ -1,8 +1,8 @@
 <div class="field" [formGroup]="form">
 	<label [for]="id">{{ label }}</label>
-	
+
 	<input [type]="type" [id]="id" [placeholder]="label" [name]="id" [formControl]="formControlObject"
-		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}"
+		[ngClass]="{'is-invalid': formControlObject.touched && formControlObject.invalid}" [mask]="mask || ''"
 		*ngIf="(type !== 'select') && (type !== 'textarea')">
 
 	<select [name]="id" [id]="id" [formControl]="formControlObject"

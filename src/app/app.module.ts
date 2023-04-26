@@ -12,27 +12,30 @@ import { FormFieldComponent } from './shared/elements/form-field/form-field.comp
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
     AppComponent,
-		LoginComponent,
-		CadastroMedicoComponent,
-		CadastroMedicamentoComponent,
-		CadastroPacienteComponent,
-		FormFieldComponent,
-		HomeComponent,
-		MenuComponent,
-		ToolbarComponent,
+    LoginComponent,
+    CadastroMedicoComponent,
+    CadastroMedicamentoComponent,
+    CadastroPacienteComponent,
+    FormFieldComponent,
+    HomeComponent,
+    MenuComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-		FormsModule,
-		ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+		provideNgxMask()
+	],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
