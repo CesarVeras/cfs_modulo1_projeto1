@@ -6,6 +6,7 @@ import { Medico } from '../models/medico';
 })
 export class LogadoService {
   eventEmitter = new EventEmitter();
+  eventoTitulo = new EventEmitter();
 
   constructor() {}
 
@@ -13,7 +14,11 @@ export class LogadoService {
     this.eventEmitter.emit();
   }
 
-	getLogado() {
+  tituloAlterou(titulo: string) {
+    this.eventoTitulo.emit(titulo);
+  }
+
+  getLogado() {
     return JSON.parse(window.localStorage.getItem('medicoLogado') || 'null');
   }
 

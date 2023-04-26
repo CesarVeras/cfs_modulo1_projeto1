@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tipos as t, unidades as u } from '../shared/utils';
 import { MedicamentoService } from '../shared/services/medicamento.service';
+import { LogadoService } from '../shared/services/logado.service';
 
 @Component({
   selector: 'app-cadastro-medicamento',
@@ -19,8 +20,11 @@ export class CadastroMedicamentoComponent {
   constructor(
     fb: FormBuilder,
     private ms: MedicamentoService,
-    private router: Router
+    private router: Router,
+		private ls: LogadoService
   ) {
+		this.ls.tituloAlterou('Prescrever medicamento');
+
     this.tipos = t;
     this.unidades = u;
 

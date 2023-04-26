@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { estados, estadosCivis, generos } from '../shared/utils';
 import { Paciente } from '../shared/models/paciente';
 import { PacienteService } from '../shared/services/paciente.service';
+import { LogadoService } from '../shared/services/logado.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
   templateUrl: './cadastro-paciente.component.html',
   styleUrls: ['./cadastro-paciente.component.css'],
 })
-export class CadastroPacienteComponent implements OnInit {
+export class CadastroPacienteComponent {
   form: any;
   pacienteSelecionado: Paciente;
   editar: boolean;
@@ -24,8 +25,13 @@ export class CadastroPacienteComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private ps: PacienteService,
-    private router: Router
+    private router: Router,
+		private ls: LogadoService
   ) {
+
+		this.ls.tituloAlterou('Cadastro de paciente');
+
+
     this.pacienteSelecionado = window.history.state.paciente || {};
     this.editar = window.history.state.editar || false;
 
