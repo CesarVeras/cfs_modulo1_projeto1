@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { tipos as t, unidades as u } from '../shared/utils';
 import { MedicamentoService } from '../shared/services/medicamento.service';
 import { LogadoService } from '../shared/services/logado.service';
+import { Paciente } from '../shared/models/paciente';
+import { PacienteService } from '../shared/services/paciente.service';
 
 @Component({
   selector: 'app-cadastro-medicamento',
@@ -16,15 +18,18 @@ export class CadastroMedicamentoComponent {
   tipos;
   unidades;
   fields: Array<any>;
+  pacientes: Array<Paciente>;
 
   constructor(
     fb: FormBuilder,
     private ms: MedicamentoService,
+    private ps: PacienteService,
     private router: Router,
-		private ls: LogadoService
+    private ls: LogadoService
   ) {
-		this.ls.tituloAlterou('Prescrever medicamento');
+    this.ls.tituloAlterou('Prescrever medicamento');
 
+    this.pacientes = ps.getPacientes();
     this.tipos = t;
     this.unidades = u;
 
@@ -56,6 +61,7 @@ export class CadastroMedicamentoComponent {
           Validators.maxLength(8000),
         ],
       ],
+      paciente: ['', [Validators.required]],
     });
     this.fields = [
       {
@@ -89,7 +95,7 @@ export class CadastroMedicamentoComponent {
         id: 'tipo',
         label: 'Tipo',
         type: 'select',
-				opcoes: this.tipos,
+        opcoes: this.tipos,
         classes: { 'medio': true },
         errorsMessage: {
           required: 'Campo obrigatório.',
@@ -109,8 +115,8 @@ export class CadastroMedicamentoComponent {
         id: 'unidade',
         label: 'Unidade',
         type: 'select',
-				opcoes: this.unidades,
-        classes: { medio: true },
+        opcoes: this.unidades,
+        classes: { 'medio': true },
         errorsMessage: {
           required: 'Campo obrigatório.',
         },
@@ -120,13 +126,24 @@ export class CadastroMedicamentoComponent {
         id: 'observacoes',
         label: 'Observações',
         type: 'textarea',
-        classes: { full: true },
+        classes: { 'full': true },
         errorsMessage: {
           required: 'Campo obrigatório.',
           minlength: 'As observações devem ter pelo menos 8 caracteres.',
           maxlength: 'As observações devem ter no máximo 8000 caracteres.',
         },
         fc: this.fc.observacoes,
+      },
+      {
+        id: 'paciente',
+        label: 'Paciente',
+        type: 'select',
+        opcoes: this.pacientes.map((p: Paciente) => p.nome),
+        classes: { 'full': true },
+        errorsMessage: {
+          required: 'Campo obrigatório.',
+        },
+        fc: this.fc.paciente,
       },
     ];
   }
@@ -137,7 +154,11 @@ export class CadastroMedicamentoComponent {
 
   cadastrar() {
     if (this.form.invalid) return;
-    this.ms.adicionarMedicamento(this.form.value);
+    let medicamento = {
+      ...this.form.value,
+      paciente: this.pacientes[this.form.value.paciente],
+    };
+    this.ms.adicionarMedicamento(medicamento);
     this.form.reset();
     this.router.navigate(['/home']);
   }
