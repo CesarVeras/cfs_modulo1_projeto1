@@ -12,11 +12,12 @@ export class FormFieldComponent {
   @Input() label: string = '';
   @Input() id: string = '';
   @Input() type?: string = 'text';
+  @Input() mask?: string = '';
   @Input() form: any;
   @Input() formControlObject: any;
   @Input() opcoes?: Array<string>;
   @Input() value?: string | undefined;
   @Input() errorsMessage: { [key: string]: string } = {};
 
-	constructor() {}
+  constructor() {}
 }
